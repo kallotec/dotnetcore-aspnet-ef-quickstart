@@ -1,0 +1,26 @@
+﻿@model List<Embryo.Web.Models.Post>
+@{
+    ViewData["Title"] = "Posts";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <h2>All Posts</h2>
+
+        @foreach (var post in Model)
+        {
+            <div>
+                <a asp-action="Details" asp-route-id="@post.Id">
+                    @post.Title
+                </a>
+
+                @if (post.IsPublished)
+                {
+                    <span>@Html.Raw("(published)")</span>
+                }
+
+            </div>
+        }
+
+    </div>
+</div>

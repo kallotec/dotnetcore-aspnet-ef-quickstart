@@ -1,0 +1,30 @@
+﻿@model Embryo.Web.Models.Post
+@{
+    ViewData["Title"] = "Edit Post";
+}
+
+<div class="row">
+    <div class="col-md-12">
+    
+        <form method="post">
+
+            <div>
+                <label asp-for="Title"></label>
+                <input asp-for="Title" />
+            </div>
+            <div>
+                <label asp-for="Content"></label>
+                <textarea asp-for="Content"></textarea>
+            </div>
+            <div>
+                <label asp-for="IsPublished"></label>
+                <input asp-for="IsPublished" />
+            </div>
+
+            <div>
+                <button type="submit">Update</button>
+            </div>
+        </form>
+
+    </div>
+</div>
