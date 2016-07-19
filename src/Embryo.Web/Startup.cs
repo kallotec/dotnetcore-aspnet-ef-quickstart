@@ -36,10 +36,6 @@ namespace Embryo.Web
             // Add framework services.
             services.AddMvc();
 
-            // Setup database connections
-            var connection = @"Server=.\SQLEXPRESS;Database=Embryo;User Id=embryo-web;Password=embryo;";
-            services.AddDbContext<SqlEfContext>(options => options.UseSqlServer(connection, b => b.MigrationsAssembly("Embryo.Data")));
-
             // Setup infrastructure
             services.AddTransient<IDbGuidGenerator, Base64GuidGenerator>();
 
@@ -49,6 +45,10 @@ namespace Embryo.Web
             // App Settings configuration
             services.AddOptions();
             services.Configure<EmbryoSettings>(Configuration.GetSection("EmbryoSettings"));
+            
+            // Setup database connections
+            var connString = Configuration.GetConnectionString("MainSqlServer");
+            services.AddDbContext<SqlEfContext>(options => options.UseSqlServer(connString, b => b.MigrationsAssembly("Embryo.Data")));
 
         }
 
