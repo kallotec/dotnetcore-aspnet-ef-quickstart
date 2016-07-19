@@ -5,22 +5,26 @@
 
 <div class="row">
     <div class="col-md-12">
-        <h2>All Posts</h2>
 
-        @foreach (var post in Model)
-        {
-            <div>
-                <a asp-action="Details" asp-route-id="@post.Id">
+        <div class="well">
+            <h2>All Posts</h2>
+
+            <a asp-action="Create">Create</a>
+            <hr />
+
+            <div class="list-group">
+            @foreach (var post in Model)
+            {
+                <a asp-action="Details" asp-route-id="@post.Id" class="list-group-item">
                     @post.Title
+                    @if (post.IsPublished)
+                    {
+                        <span class="badge">published</span>
+                    }
                 </a>
-
-                @if (post.IsPublished)
-                {
-                    <span>@Html.Raw("(published)")</span>
-                }
-
+            }
             </div>
-        }
+        </div>
 
     </div>
 </div>

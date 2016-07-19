@@ -19,4 +19,3 @@ Todo:
 - [ ] Make CRUD views nicer using bootstrap
 - [ ] Add instructions for ef migrations
 - [ ] Add Getting Started section
-- [ ] Read connection string from appsettings
