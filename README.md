@@ -1,8 +1,9 @@
-# Quick start
+# A simple quickstart solution for ASP.NET Core
 
-This code base serves only to save time on the initial solution setup, allowing you to get on to delivering value sooner instead of bikeshedding.
+This code base serves only to save time on initial solution setup using a simple contrived example, allowing you to 
+get on to delivering value sooner instead of [bikeshedding](http://bikeshed.com/).
 
-Take a copy and away you go!
+Take a copy, remove the hidden `.git` folder, re-`git init` and away you go!
 
 Features:
 - A vertical slice of CRUD functionality of an entity
@@ -12,11 +13,21 @@ Features:
 - "Short" Guid generator for non-numeric URL-friendly database ID's.
 - Abstracted concept of time
 - App settings access class
-- Basic unit test examples
+- A basic unit test example
+
+## ASP.NET Core Reference
+
+[https://docs.asp.net/en/latest/tutorials/index.html](https://docs.asp.net/en/latest/tutorials/index.html)
 
 ## Entity Framework Migrations
 
-### To execute the current migration:
+Because we have our data layer contained in a seperate project, like sensible people do, we need to jump through a 
+couple hoops for ef migrations to work properly because migrations run from dotnet core class libraries arn't 
+properly supported yet.
+
+### In Visual Studio
+
+#### To execute the current migration:
 
 Ensure the connection string in `appsettings.json` is correct. And ensure the solution is completely restored and re-built.
 
@@ -35,10 +46,12 @@ Run `Add-Migration <migration-name>` switching out `<migration-name>` with what 
 
 More info on migrations @ [https://docs.efproject.net/en/latest/platforms/aspnetcore/new-db.html#create-your-database](https://docs.efproject.net/en/latest/platforms/aspnetcore/new-db.html#create-your-database)
 
-### Running migrations from command line
+### Outside Visual Studio
 
-Unfortunately, Entity Framework Core 1.0.0 RTM still does not support migrations for class library projects 
-(which we have our data layer contained in, like sensible people do), yet.
-But it's not too hard to trick it into working, if running from command line is a requirement (automated deploys, etc).
+#### Running migrations from command line
 
-Here's how: [http://benjii.me/2016/06/entity-framework-core-migrations-for-class-library-projects/](http://benjii.me/2016/06/entity-framework-core-migrations-for-class-library-projects/)
+If running migrations from command line is a requirement (automated deploys, etc), it's not hard to trick it into working.
+
+Tutorial: [http://benjii.me/2016/06/entity-framework-core-migrations-for-class-library-projects/](http://benjii.me/2016/06/entity-framework-core-migrations-for-class-library-projects/)
+
+Fingers crossed this gets better official support soon.

@@ -44,7 +44,7 @@ namespace Embryo.Web
 
             // App Settings configuration
             services.AddOptions();
-            services.Configure<EmbryoSettings>(Configuration.GetSection("MyCustomSettings"));
+            services.Configure<MyCustomSettings>(Configuration.GetSection("MyCustomSettings"));
             
             // Setup database connections
             var connString = Configuration.GetConnectionString("MainSqlServer");
