@@ -21,37 +21,28 @@ Features:
 
 ## Entity Framework Migrations
 
-Because we have our data layer contained in a seperate project, like sensible people do, we need to jump through a 
-couple hoops for ef migrations to work properly because migrations run from dotnet core class libraries arn't 
-properly supported yet.
+To generate the database schema required for this project, ef migrations must be run.
 
-### In Visual Studio
+Requires a SQL database server and a login with `create database` permissions.
 
-#### To execute the current migration:
+### Running database migrations in VS
 
-Ensure the connection string in `appsettings.json` is correct. And ensure the solution is completely restored and re-built.
+Ensure the connection string in `appsettings.json` is correct. And ensure the entire solution is completely restored and re-built.
 
 Open the `Package Manager Console`, and select `src\Embryo.Data` as the Default project. 
-This should be the same project name as specified in Startup.cs class for the Entity Framework Migrations configuration. 
 
-(NOTE: If the Data layer project name changes, the project name specified in Startup.cs will need to change too.)
+Then run: `Update-Database`.
 
-Then run: `Update-Database`
+If it can't find the command, try rebuilding the entire solution, and/or restarting VS.
 
-### To create a new migration:
+### Running database migrations from the command line
 
-In the `Package Manager Console` ensure the Default Project is set, as above.
+If running migrations from command line is a requirement (automated deploys, etc), we need to do a couple magic tricks:
 
-Run `Add-Migration <migration-name>` switching out `<migration-name>` with what you want to call the migration class.
-
-More info on migrations @ [https://docs.efproject.net/en/latest/platforms/aspnetcore/new-db.html#create-your-database](https://docs.efproject.net/en/latest/platforms/aspnetcore/new-db.html#create-your-database)
-
-### Outside Visual Studio
-
-#### Running migrations from command line
-
-If running migrations from command line is a requirement (automated deploys, etc), it's not hard to trick it into working.
-
-Tutorial: [http://benjii.me/2016/06/entity-framework-core-migrations-for-class-library-projects/](http://benjii.me/2016/06/entity-framework-core-migrations-for-class-library-projects/)
+[http://benjii.me/2016/06/entity-framework-core-migrations-for-class-library-projects/](http://benjii.me/2016/06/entity-framework-core-migrations-for-class-library-projects/)
 
 Fingers crossed this gets better official support soon.
+
+### More on ef migrations
+
+[https://docs.efproject.net/en/latest/platforms/aspnetcore/new-db.html#create-your-database](https://docs.efproject.net/en/latest/platforms/aspnetcore/new-db.html#create-your-database)
