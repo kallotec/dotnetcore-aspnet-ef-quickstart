@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Embryo.Tests.Services
 {
-    public abstract class InMemoryKeyedRepositoryBase<TEntity, TKey>
+    public abstract class InMemoryKeyedRepositoryBase<TEntity, TKey> where TEntity : class
     {
         public InMemoryKeyedRepositoryBase(Func<TEntity, TKey, bool> keyComparer)
         {
@@ -18,11 +18,11 @@ namespace Embryo.Tests.Services
 
         public bool Delete(TKey id)
         {
-            var post = Items.FirstOrDefault(p => _keyComparer(p, id));
-            if (post == null)
+            var existing = Items.FirstOrDefault(p => _keyComparer(p, id));
+            if (existing == null)
                 return false;
 
-            return Items.Remove(post);
+            return Items.Remove(existing);
         }
 
         public TEntity Get(TKey id)
@@ -41,8 +41,8 @@ namespace Embryo.Tests.Services
                 return false;
 
             // Enforce unique keys
-            var post = Items.FirstOrDefault(p => _keyComparer(p, id));
-            if (post != null)
+            var existing = Items.FirstOrDefault(p => _keyComparer(p, id));
+            if (existing != null)
                 return false;
 
             Items.Add(entity);
@@ -58,13 +58,13 @@ namespace Embryo.Tests.Services
                 return true;
 
             // Ensure item already exists
-            var post = Items.FirstOrDefault(p => _keyComparer(p, id));
-            if (post == null)
+            var existing = Items.FirstOrDefault(p => _keyComparer(p, id));
+            if (existing == null)
                 return false;
 
             // Replace old version with new
-            Items.Remove(post);
-            Items.Add(post);
+            Items.Remove(existing);
+            Items.Add(entity);
 
             return true;
         }
