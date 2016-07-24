@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 namespace Embryo.Web.Infrastructure
 {
     /// <summary>
-    /// Maps to the "EmbryoSettings" section in appsettings.json
+    /// Maps to the "MyCustomSettings" section in appsettings.json
     /// </summary>
-    public class EmbryoSettings
+    public class MyCustomSettings
     {
         public string OptionA { get; set; }
         public string OptionB { get; set; }

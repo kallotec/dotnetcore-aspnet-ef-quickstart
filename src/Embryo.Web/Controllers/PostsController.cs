@@ -12,14 +12,14 @@ namespace Embryo.Web.Controllers
 {
     public class PostsController : Controller
     {
-        public PostsController(IPostRepository postRepository, IOptions<EmbryoSettings> settings)
+        public PostsController(IPostRepository postRepository, IOptions<MyCustomSettings> settings)
         {
             _postRepository = postRepository;
             _settings = settings.Value;
         }
 
         IPostRepository _postRepository;
-        EmbryoSettings _settings;
+        MyCustomSettings _settings;
 
         // GET: /Posts/
         public IActionResult Index()
